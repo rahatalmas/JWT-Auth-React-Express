@@ -3,7 +3,8 @@ const bcrypt = require('bcrypt');
 const userRagistration = async (req,res,next) =>{
     try{
         const {username,email,password} = await req.body;
-        const hashPassword = await bcrypt.hash(password,10);
+        const salt = bcrypt.genSalt(10);
+        const hashPassword = await bcrypt.hash(password,salt);
         console.log(hashPassword);
         res.json({username,email});
     }catch(err){
