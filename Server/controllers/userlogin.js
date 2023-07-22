@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const { AccessTokenGenerator,RefreshTokenGenerator } = require('./jwtTokenGenerator');
 
 const defaultUser = {
     username:"rahatalmas",
@@ -11,7 +12,10 @@ const userLogin = async (req,res,next) =>{
         const {username,password} = await req.body;
         const match = await bcrypt.compare(password,defaultUser.password)
         if(match){
-            console.log(match);
+            const accessToken = AccessTokenGenerator(username);
+            const refreshToken = RefreshTokenGenerator(username);
+            console.log(accessToken);
+            console.log(refreshToken);
             res.json({username});
         }else{
             res.json({message:"incorrect password"});
