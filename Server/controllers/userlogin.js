@@ -12,7 +12,7 @@ const userLogin = async (req,res,next) =>{
         const match = await bcrypt.compare(password,defaultUser.password)
         if(match){
             console.log(match);
-            res.json({username})
+            res.json({username});
         }else{
             res.json({message:"incorrect password"});
         }
@@ -20,7 +20,7 @@ const userLogin = async (req,res,next) =>{
         console.log(err.message);
         res.json({message:"something went wrong..."});
     }finally{
-        console.log('end of login req...')
+        console.log('end of login req...');
     }
 }
 
