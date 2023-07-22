@@ -10,8 +10,12 @@ const userLogin = async (req,res,next) =>{
     try{
         const {username,password} = await req.body;
         const match = await bcrypt.compare(password,defaultUser.password)
-        console.log(match);
-        res.json({username})
+        if(match){
+            console.log(match);
+            res.json({username})
+        }else{
+            res.json({message:"incorrect password"});
+        }
     }catch(err){
         console.log(err.message);
         res.json({message:"something went wrong..."});
