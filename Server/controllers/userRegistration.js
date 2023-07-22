@@ -1,9 +1,15 @@
 const bcrypt = require('bcrypt');
 
-const userRagistration = (req,res,next) =>{
-    const {username,email,password} = req.body;
-    console.log(username,email,password);
-     res.json({username,email});
+const userRagistration = async (req,res,next) =>{
+    try{
+        const {username,email,password} = await req.body;
+        const hashPassword = await bcrypt.hash(password,10);
+        console.log(hashPassword);
+         res.json({username,email});
+    }catch(err){
+        console.log(err.message);
+        res.json({message:"something went wrong..."})
+    }
 }
 
 module.exports = {userRagistration};
