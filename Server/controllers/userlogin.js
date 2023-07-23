@@ -14,7 +14,7 @@ const userLogin = async (req,res,next) =>{
         if(match){
             const accessToken = AccessTokenGenerator(username);
             const refreshToken = RefreshTokenGenerator(username);
-            res.cookie('jwt',refreshToken,{expriesIn:3600,httpOnly:true})
+            res.cookie('jwt',refreshToken,{expriesIn:3600,httpOnly:true,secure:true})
             res.json({username,accessToken});
         }else{
             res.json({message:"incorrect password"});
