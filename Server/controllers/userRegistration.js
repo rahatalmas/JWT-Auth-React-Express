@@ -1,17 +1,19 @@
 const bcrypt = require('bcrypt');
+const {AccessTokenGenerator,RefreshTokenGenerator} = require('./jwtTokenGenerator');
 
 const userRagistration = async (req,res,next) =>{
     try{
         const {username,email,password} = await req.body;
-        const salt = bcrypt.genSalt(10);
+        const salt = await bcrypt.genSalt(10);
         const hashPassword = await bcrypt.hash(password,salt);
-        console.log(hashPassword);
-        res.json({username,email});
+        const accessToken = AccessTokenGenerator(username);
+        const refreshToken = RefreshTokenGenerator(username);
+        res.json({username,email,accessToken});
     }catch(err){
         console.log(err.message);
         res.json({message:"something went wrong..."})
     }finally{
-        console.log("the end for this req...")
+        console.log("the end registration req...")
     }
     next();
 }

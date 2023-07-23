@@ -6,6 +6,7 @@ const app = express();
 const PORT = 5000;
 const blogRoutes = require('./routes/blogRoutes');
 const userRoutes = require('./routes/userRoutes');
+const verifyToken = require('./controllers/verifyToken');
 app.use(cookieParser());
 app.use(cors());
 app.use(bodyParser.json());
@@ -17,14 +18,8 @@ app.get("/",(req,res,next)=>{
     res.json({name:"Giant Server"});
 })
 
-const AuthChecker = (req,res,next)=>{
-        console.log('blog middleware');
-        next();
-    }
-
-
 app.use("/user",userRoutes);
-app.use("/api",AuthChecker,blogRoutes);
+app.use("/api",verifyToken,blogRoutes);
 
 app.get("/test",(req,res,next)=>{
      res.json({message:"test"});

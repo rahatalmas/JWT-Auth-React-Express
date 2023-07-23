@@ -14,9 +14,7 @@ const userLogin = async (req,res,next) =>{
         if(match){
             const accessToken = AccessTokenGenerator(username);
             const refreshToken = RefreshTokenGenerator(username);
-            console.log(accessToken);
-            console.log(refreshToken);
-            res.json({username});
+            res.json({username,accessToken});
         }else{
             res.json({message:"incorrect password"});
         }
