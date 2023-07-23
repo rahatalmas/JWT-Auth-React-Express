@@ -6,8 +6,7 @@ const RefreshTokenGenerator = (username) =>{
 }
 
 const AccessTokenGenerator = (username) =>{
-    return jwt.sign({username},ACCESS_TOKEN_SECRET,{algorithm:'HS256',expiresIn:'1m'});
+    return jwt.sign({username},ACCESS_TOKEN_SECRET,{algorithm:'HS256',expiresIn:'15m'});
 }
-
 
 module.exports = {RefreshTokenGenerator,AccessTokenGenerator};
