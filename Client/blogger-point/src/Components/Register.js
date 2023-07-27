@@ -1,4 +1,5 @@
 import {useRef,useState,useEffect,useContext} from 'react';
+import { NavLink } from 'react-router-dom';
 import AuthContext from '../Context/UserAuthContext';
 
 const Register = () => {
@@ -73,8 +74,13 @@ const Register = () => {
                         onChange={(e)=>setPassword(e.target.value)}
                         required
                     />
-                    <button className='form-button' type='submit' >Register</button>
+                    <button className='form-button' type='submit' >SignUp</button>
                 </form>
+                <p style={{fontSize:"20px",textAlign:"center"}}>Already Have Account?
+                    <span style={{marginLeft:"5px",fontSize:"25px",cursor:"pointer"}}>
+                        <NavLink to="/login">Login</NavLink>
+                    </span>
+                </p>
             </div>
         </section>
         </>
