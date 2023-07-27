@@ -1,13 +1,12 @@
 import {useRef,useState,useEffect,useContext} from 'react';
 import AuthContext from '../Context/UserAuthContext';
-
+import {useNavigate} from 'react-router-dom';
 const Login = () => {
-
     const firstInput = useRef();
     const [username,setUserName] = useState('');
     const [password,setPassword] = useState('');
     const {setAuth} = useContext(AuthContext);
-
+    const navigate = useNavigate();
     useEffect(()=>{
         firstInput.current.focus();
     },[]);
@@ -32,6 +31,7 @@ const Login = () => {
         setAuth(userData);
         setUserName('');
         setPassword('');
+        navigate("/")
     }
     
     return(
