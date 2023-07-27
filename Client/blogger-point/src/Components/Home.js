@@ -1,8 +1,8 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import AuthContext from "../Context/UserAuthContext";
 
 const Home = () =>{
-    const {auth} = useContext(AuthContext);    
+    const {auth} = useContext(AuthContext);
     return(
         <>
             <h1 style={{color:"black",fontSize:"50px"}}>Welcome, <span style={{color:"purple",fontSize:"45px"}}>Curious Mind</span></h1>
