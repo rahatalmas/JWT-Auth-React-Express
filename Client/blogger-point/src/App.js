@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import {createBrowserRouter,RouterProvider} from 'react-router-dom';
 import './App.css';
 import Register from './Components/Register';
+import Nav from './Navigations/Nav';
 import Home from './Components/Home';
 import AuthContext from './Context/UserAuthContext';
 
@@ -11,7 +12,14 @@ function App() {
   const router = createBrowserRouter([
     {
       path:"/",
-      element: auth.accessToken == null?<Register/>:<Home/>
+      element: auth.accessToken == null?<Register/>:<Nav/>,
+      errorElement:<h1>Page Not found</h1>,
+      children:[
+        {
+          path:"/",
+          element:<Home/>
+        }
+      ]
     }
   ]);
 
