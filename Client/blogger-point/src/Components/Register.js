@@ -32,7 +32,7 @@ const Register = () => {
         )
         let userData = await response.json();
         setAuth(userData);
-        console.log(userData)
+        //console.log(userData)
         //console.log(user);
         setUserName('');
         setEmail('');
@@ -42,7 +42,6 @@ const Register = () => {
     return(
         <>
         <section>
-            <h1 style={{color:"black",fontSize:"50px"}}>Welcome, <span style={{color:"purple",fontSize:"45px"}}>Curious Mind</span></h1>
             <div className='registerAndlogin-form' >
                 <h3 style={{textAlign:"center",color:"darkblue",fontSize:"20px"}}>Signup & Explore</h3>
                 <form onSubmit={RegisterFormSubmit}>
