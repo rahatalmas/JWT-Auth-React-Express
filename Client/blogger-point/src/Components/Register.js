@@ -1,4 +1,5 @@
-import {useRef,useState,useEffect} from 'react';
+import {useRef,useState,useEffect,useContext} from 'react';
+import AuthContext from '../Context/UserAuthContext';
 
 const Register = () => {
 
@@ -6,10 +7,11 @@ const Register = () => {
     const [username,setUserName] = useState('');
     const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
-    
-    /*(useEffect(()=>{
+    const {setAuth} = useContext(AuthContext);
+
+    useEffect(()=>{
         firstInput.current.focus();
-    })*/
+    },[]);
 
     const RegisterFormSubmit = async (e) =>{
         e.preventDefault();
@@ -18,7 +20,6 @@ const Register = () => {
             ,email
             ,password
         }
-        
         let response = await fetch(
             "http://localhost:5000/user/register",
             {
@@ -30,6 +31,7 @@ const Register = () => {
             }
         )
         let userData = await response.json();
+        setAuth(userData);
         console.log(userData)
         //console.log(user);
         setUserName('');
