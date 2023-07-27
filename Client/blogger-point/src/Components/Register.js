@@ -11,14 +11,27 @@ const Register = () => {
         firstInput.current.focus();
     })*/
 
-    const RegisterFormSubmit = (e) =>{
+    const RegisterFormSubmit = async (e) =>{
         e.preventDefault();
         let user = {
             username
             ,email
             ,password
         }
-        console.log(user);
+        
+        let response = await fetch(
+            "http://localhost:5000/user/register",
+            {
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                body:JSON.stringify(user)
+            }
+        )
+        let userData = await response.json();
+        console.log(userData)
+        //console.log(user);
         setUserName('');
         setEmail('');
         setPassword('');
