@@ -41,7 +41,7 @@ const Register = () => {
         <>
         <section>
             <h1 style={{color:"black",fontSize:"50px"}}>Welcome, <span style={{color:"purple",fontSize:"45px"}}>Curious Mind</span></h1>
-            <div className='registerAndlogin-form' style={{width:"50%",margin:"auto"}}>
+            <div className='registerAndlogin-form' >
                 <h3 style={{textAlign:"center",color:"darkblue",fontSize:"20px"}}>Signup & Explore</h3>
                 <form onSubmit={RegisterFormSubmit}>
                     <label htmlFor="username">Enter Your Name: </label>
@@ -72,7 +72,7 @@ const Register = () => {
                         onChange={(e)=>setPassword(e.target.value)}
                         required
                     />
-                    <button type='submit' >Register</button>
+                    <button className='form-button' type='submit' >Register</button>
                 </form>
             </div>
         </section>
