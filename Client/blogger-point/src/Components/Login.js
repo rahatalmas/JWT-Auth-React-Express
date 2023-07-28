@@ -28,10 +28,12 @@ const Login = () => {
             }
         )
         let userData = await response.json();
+        localStorage.setItem("username",userData.username);
+        localStorage.setItem("userToken",userData.accessToken);
         setAuth(userData);
         setUserName('');
         setPassword('');
-        navigate("/")
+        navigate("/");
     }
     
     return(
@@ -61,6 +63,7 @@ const Login = () => {
                     />
                     <button className='form-button' type='submit' >Login</button>
                 </form>
+                <p>{}</p>
             </div>
         </section>
         </>

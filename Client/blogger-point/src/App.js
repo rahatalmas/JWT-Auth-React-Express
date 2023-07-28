@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import {createBrowserRouter,RouterProvider} from 'react-router-dom';
 import './App.css';
 import Register from './Components/Register';
@@ -9,7 +9,12 @@ import AuthContext from './Context/UserAuthContext';
 
 function App() {
   
-  const {auth} = useContext(AuthContext);
+  const {auth,setAuth} = useContext(AuthContext);
+
+  useEffect(()=>{
+    console.log('app component')
+  },[])
+
   const router = createBrowserRouter([
     {
       path:"/",
@@ -24,7 +29,7 @@ function App() {
     },
     {
       path:"/login",
-      element:<Login/>
+      element: auth.accessToken == null?<Login/>:<Nav/>,
     }
   ]);
 
