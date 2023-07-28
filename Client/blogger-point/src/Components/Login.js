@@ -28,11 +28,11 @@ const Login = () => {
             }
         )
         let userData = await response.json();
-        localStorage.setItem("username",userData.username);
-        localStorage.setItem("userToken",userData.accessToken);
         setAuth(userData);
         setUserName('');
         setPassword('');
+        localStorage.setItem("username",userData.username);
+        localStorage.setItem("userToken",userData.accessToken);
         navigate("/");
     }
     

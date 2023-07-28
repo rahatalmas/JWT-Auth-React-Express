@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 router.get('/blogs',(req,res,next)=>{
-    console.log(req.cookies);
+    //console.log(req.cookies);
     res.json({blog:"blog1"})
 });
 

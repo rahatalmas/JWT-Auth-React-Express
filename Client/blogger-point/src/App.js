@@ -12,13 +12,16 @@ function App() {
   const {auth,setAuth} = useContext(AuthContext);
 
   useEffect(()=>{
-    console.log('app component')
+     let username = localStorage.getItem('username');
+     let accessToken = localStorage.getItem('userToken');
+     setAuth({username,accessToken});
+     console.log('hello app')
   },[])
 
   const router = createBrowserRouter([
     {
       path:"/",
-      element: auth.accessToken == null?<Register/>:<Nav/>,
+      element: !auth.accessToken?<Register/>:<Nav/>,
       errorElement:<h1>Page Not found</h1>,
       children:[
         {
@@ -29,7 +32,7 @@ function App() {
     },
     {
       path:"/login",
-      element: auth.accessToken == null?<Login/>:<Nav/>,
+      element: !auth.accessToken?<Login/>:<Nav/>,
     }
   ]);
 

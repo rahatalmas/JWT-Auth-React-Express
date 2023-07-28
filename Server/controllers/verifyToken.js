@@ -3,9 +3,9 @@ const {ACCESS_TOKEN_SECRET} = require('./secrets.js');
 
 const verifyToken = async (req,res,next) =>{
      try{
-        const foundToken = req.headers["authorization"].split(' ')[1];
+        const foundToken = req.headers["authorization" || "Authorization"].split(' ')[1];
         const decode = await jwt.verify(foundToken,ACCESS_TOKEN_SECRET);
-        //console.log(decode);
+        console.log(decode);
         next();
      }catch(err){
         console.log(err.message);
